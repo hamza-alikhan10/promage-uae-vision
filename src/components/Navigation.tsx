@@ -22,18 +22,12 @@ const Navigation = () => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-lg shadow-custom border-b'
-          : 'bg-transparent'
-      }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg shadow-custom border-b transition-all duration-300">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-2xl lg:text-3xl font-bold text-gradient">
+            <div className="text-2xl lg:text-3xl font-bold text-primary">
               Promage Connect
             </div>
           </div>
@@ -44,7 +38,7 @@ const Navigation = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
+                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
               >
                 {item.name}
               </a>

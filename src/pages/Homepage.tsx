@@ -6,18 +6,24 @@ import FeaturesSection from '@/components/FeaturesSection';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 
-const Index = () => {
+const Homepage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       <HeroSection />
       <AboutSection />
-      <ProductShowcase />
-      <FeaturesSection />
-      <ContactForm />
+      <div id="products">
+        <ProductShowcase />
+      </div>
+      <div id="news">
+        <FeaturesSection />
+      </div>
+      <div id="contact">
+        <ContactForm />
+      </div>
       <Footer />
     </div>
   );
 };
 
-export default Index;
+export default Homepage;
