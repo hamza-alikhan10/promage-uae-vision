@@ -68,35 +68,47 @@ const ProductDetail = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <div className="pt-20">
+      <div className="pt-24">
         <div className="container mx-auto px-4 lg:px-8 py-8">
-          {/* Breadcrumb */}
-          <div className="flex items-center mb-8">
-            <Button
-              variant="ghost"
-              onClick={() => navigate(-1)}
-              className="mr-4"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back
-            </Button>
-            <nav className="text-sm text-muted-foreground">
-              <span>Home</span> / <span>Products</span> / <span className="text-foreground">{product.title}</span>
-            </nav>
+          {/* Enhanced Breadcrumb */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 p-4 bg-gradient-card rounded-xl shadow-soft">
+            <div className="flex items-center mb-4 sm:mb-0">
+              <Button
+                variant="ghost"
+                onClick={() => navigate(-1)}
+                className="mr-4 hover:bg-primary/10 hover:text-primary"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Products
+              </Button>
+              <nav className="text-sm text-muted-foreground">
+                <span className="hover:text-primary cursor-pointer transition-colors">Home</span> 
+                <span className="mx-2">/</span> 
+                <span className="hover:text-primary cursor-pointer transition-colors">Products</span> 
+                <span className="mx-2">/</span> 
+                <span className="text-foreground font-medium">{product.title}</span>
+              </nav>
+            </div>
+            <Badge className="bg-gradient-primary text-primary-foreground shadow-glow">
+              Free UAE Delivery
+            </Badge>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Product Images */}
+            {/* Enhanced Product Images */}
             <div className="space-y-4">
-              <div className="relative overflow-hidden rounded-xl bg-muted/20">
+              <div className="relative overflow-hidden rounded-xl bg-gradient-card shadow-large">
                 <img
                   src={product.images[selectedImage]}
                   alt={product.title}
-                  className="w-full h-96 lg:h-[500px] object-cover"
+                  className="w-full h-96 lg:h-[500px] object-cover hover:scale-105 transition-transform duration-500"
                 />
-                <Badge className="absolute top-4 right-4 bg-destructive text-destructive-foreground">
+                <Badge className="absolute top-4 right-4 bg-gradient-primary text-primary-foreground shadow-glow animate-pulse">
                   25% OFF
                 </Badge>
+                <div className="absolute bottom-4 left-4 bg-background/90 backdrop-blur-sm rounded-lg p-2">
+                  <span className="text-xs font-medium text-foreground">High Quality 3MP</span>
+                </div>
               </div>
               
               {/* Image Thumbnails */}
@@ -184,18 +196,36 @@ const ProductDetail = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
                     onClick={handleAddToCart}
-                    className="flex-1 bg-gradient-primary hover:shadow-glow transition-all duration-300"
+                    size="lg"
+                    className="flex-1 bg-gradient-primary hover:shadow-glow transition-all duration-300 transform hover:scale-105"
                   >
-                    <ShoppingCart className="mr-2 h-4 w-4" />
+                    <ShoppingCart className="mr-2 h-5 w-5" />
                     Add to Cart
                   </Button>
                   <Button
                     onClick={handleBuyNow}
                     variant="outline"
-                    className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                    size="lg"
+                    className="flex-1 border-primary text-primary hover:bg-gradient-primary hover:text-primary-foreground hover:shadow-glow transition-all duration-300"
                   >
-                    Buy Now
+                    Buy Now - {product.price}
                   </Button>
+                </div>
+
+                {/* Trust Badges */}
+                <div className="grid grid-cols-3 gap-4 pt-4">
+                  <div className="text-center p-3 bg-gradient-card rounded-lg">
+                    <Shield className="h-6 w-6 text-primary mx-auto mb-1" />
+                    <span className="text-xs font-medium">2 Year Warranty</span>
+                  </div>
+                  <div className="text-center p-3 bg-gradient-card rounded-lg">
+                    <Battery className="h-6 w-6 text-primary mx-auto mb-1" />
+                    <span className="text-xs font-medium">Free Installation</span>
+                  </div>
+                  <div className="text-center p-3 bg-gradient-card rounded-lg">
+                    <Wifi className="h-6 w-6 text-primary mx-auto mb-1" />
+                    <span className="text-xs font-medium">24/7 Support</span>
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-center space-x-6 pt-4">
