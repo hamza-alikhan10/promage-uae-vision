@@ -133,51 +133,74 @@ const ProductDetail = () => {
     console.log('Proceeding to checkout');
   };
 
-  const handleWishlist = () => {
-    setIsWishlisted(!isWishlisted);
-  };
-
-  const ImageGallery = () => (
-    <div className="space-y-4">
-      {/* Main Image */}
-      <div className="relative group overflow-hidden rounded-xl bg-gray-50">
-        <img
-          src={product.images[selectedImage]}
-          alt={product.title}
-          className="w-full h-80 sm:h-96 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <Badge className="absolute top-4 left-4 bg-red-500 text-white font-semibold">
-          {discount}% OFF
-        </Badge>
-        {!product.inStock && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <Badge variant="destructive" className="text-lg px-4 py-2">Out of Stock</Badge>
-          </div>
-        )}
-      </div>
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
       
-      {/* Thumbnail Grid */}
-      <div className="grid grid-cols-4 gap-2 sm:gap-4">
-        {product.images.map((image, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedImage(index)}
-            className={`relative overflow-hidden rounded-lg border-2 transition-all aspect-square ${
-              selectedImage === index
-                ? 'border-blue-500 ring-2 ring-blue-200'
-                : 'border-gray-200 hover:border-blue-300'
-            }`}
-          >
-            <img
-              src={image}
-              alt={`${product.title} view ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </button>
-        ))}
-      </div>
-    </div>
-  );
+      <div className="pt-24">
+        <div className="container mx-auto px-4 lg:px-8 py-8">
+          {/* Enhanced Breadcrumb */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 p-4 bg-gradient-card rounded-xl shadow-soft">
+            <div className="flex items-center mb-4 sm:mb-0">
+              <Button
+                variant="ghost"
+                onClick={() => navigate(-1)}
+                className="mr-4 hover:bg-primary/10 hover:text-primary"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Products
+              </Button>
+              <nav className="text-sm text-muted-foreground">
+                <span className="hover:text-primary cursor-pointer transition-colors">Home</span> 
+                <span className="mx-2">/</span> 
+                <span className="hover:text-primary cursor-pointer transition-colors">Products</span> 
+                <span className="mx-2">/</span> 
+                <span className="text-foreground font-medium">{product.title}</span>
+              </nav>
+            </div>
+            <Badge className="bg-gradient-primary text-primary-foreground shadow-glow">
+              Free UAE Delivery
+            </Badge>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Enhanced Product Images */}
+            <div className="space-y-4">
+              <div className="relative overflow-hidden rounded-xl bg-gradient-card shadow-large">
+                <img
+                  src={product.images[selectedImage]}
+                  alt={product.title}
+                  className="w-full h-96 lg:h-[500px] object-cover hover:scale-105 transition-transform duration-500"
+                />
+                <Badge className="absolute top-4 right-4 bg-gradient-primary text-primary-foreground shadow-glow animate-pulse">
+                  25% OFF
+                </Badge>
+                <div className="absolute bottom-4 left-4 bg-background/90 backdrop-blur-sm rounded-lg p-2">
+                  <span className="text-xs font-medium text-foreground">High Quality 3MP</span>
+                </div>
+              </div>
+              
+              {/* Image Thumbnails */}
+              <div className="grid grid-cols-3 gap-4">
+                {product.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`relative overflow-hidden rounded-lg border-2 transition-all ${
+                      selectedImage === index
+                        ? 'border-primary shadow-glow'
+                        : 'border-border hover:border-primary/50'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.title} view ${index + 1}`}
+                      className="w-full h-20 object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
 
   const ProductInfo = () => (
     <div className="space-y-6">
@@ -278,24 +301,40 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <Button
-            onClick={handleAddToCart}
-            disabled={!product.inStock}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 transition-all duration-200 hover:shadow-lg"
-          >
-            <ShoppingCart className="mr-2 h-4 w-4" />
-            Add to Cart
-          </Button>
-          <Button
-            onClick={handleBuyNow}
-            disabled={!product.inStock}
-            variant="outline"
-            className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 transition-all duration-200"
-          >
-            Buy Now
-          </Button>
-        </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    onClick={handleAddToCart}
+                    size="lg"
+                    className="flex-1 bg-gradient-primary hover:shadow-glow transition-all duration-300 transform hover:scale-105"
+                  >
+                    <ShoppingCart className="mr-2 h-5 w-5" />
+                    Add to Cart
+                  </Button>
+                  <Button
+                    onClick={handleBuyNow}
+                    variant="outline"
+                    size="lg"
+                    className="flex-1 border-primary text-primary hover:bg-gradient-primary hover:text-primary-foreground hover:shadow-glow transition-all duration-300"
+                  >
+                    Buy Now - {product.price}
+                  </Button>
+                </div>
+
+                {/* Trust Badges */}
+                <div className="grid grid-cols-3 gap-4 pt-4">
+                  <div className="text-center p-3 bg-gradient-card rounded-lg">
+                    <Shield className="h-6 w-6 text-primary mx-auto mb-1" />
+                    <span className="text-xs font-medium">2 Year Warranty</span>
+                  </div>
+                  <div className="text-center p-3 bg-gradient-card rounded-lg">
+                    <Battery className="h-6 w-6 text-primary mx-auto mb-1" />
+                    <span className="text-xs font-medium">Free Installation</span>
+                  </div>
+                  <div className="text-center p-3 bg-gradient-card rounded-lg">
+                    <Wifi className="h-6 w-6 text-primary mx-auto mb-1" />
+                    <span className="text-xs font-medium">24/7 Support</span>
+                  </div>
+                </div>
 
         {/* Action Buttons */}
         <div className="flex items-center justify-center gap-6 pt-2">
