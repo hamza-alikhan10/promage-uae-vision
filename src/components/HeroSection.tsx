@@ -66,7 +66,7 @@ const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-white/50 text-white hover:bg-white/20 backdrop-blur-sm text-lg px-8 py-4"
+              className="bg-primary hover:bg-primary-dark transform hover:scale-105 transition-all duration-300 shadow-glow text-lg px-8 py-4"
             >
               <Play className="mr-2 h-5 w-5" />
               Watch Demo
