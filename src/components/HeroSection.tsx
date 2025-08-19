@@ -44,7 +44,7 @@ const HeroSection = () => {
         className="relative z-10 container mx-auto px-4 lg:px-8 text-center"
       >
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-slide-up drop-shadow-lg">
+          <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold text-white mb-6 animate-slide-up drop-shadow-lg">
             Redefining Smart Security
             <span className="block text-primary-light mt-2">in the UAE</span>
           </h1>
@@ -91,12 +91,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Floating Elements */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-float">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse" />
-        </div>
-      </div>
+     
     </section>
   );
 };
